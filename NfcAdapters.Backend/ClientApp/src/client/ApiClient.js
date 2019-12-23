@@ -1,7 +1,6 @@
-﻿class ApiClient {
+﻿export class ApiClient {
 
-
-    constructor(username, key, endpoint) {
+    SetValues(username, key, endpoint) {
         this.username = username;
         this.key = key;
         this.endpoint = endpoint;
@@ -19,6 +18,78 @@
         localStorage.setItem("endpoint", this.endpoint);
     }
 
+    static parse_response(data) {
+
+        var response = JSON.parse(data);
+
+        switch (response.method) {
+            case "read":
+                ApiClient.read_response(response);
+            default:
+                ApiClient.output("Output: " + response.data);
+        }
+    }
+
+    static read_response(rsp) {
+        var sum = 0;
+
+        for (let i = 0; i < rsp.data.length; i++) {
+            sum += (2 ** i) * rsp.data[i];
+        }
+
+        ApiClient.output("Card ID: " + sum);
+    }
+
+    connect() {
+        this.ws = new WebSocket(`ws://${this.server}/`);
+    }
+
+    init(server) {
+        this.server = server;
+
+        if (this.ws) {
+            this.close();
+        }
+
+        this.connect();
+
+        // Set event handlers.
+        this.ws.onopen = function () {
+            ApiClient.output("open!");
+        };
+
+        this.ws.onmessage = function (e) {
+            // e.data contains received string.
+            ApiClient.parse_response(e.data);
+        };
+
+        this.ws.onclose = function () {
+            ApiClient.output("closed!");
+        };
+
+        this.ws.onerror = function (e) {
+            ApiClient.output("error: " + e);
+            console.log(e);
+        };
+    }
 
 
+    send(msg) {
+        this.ws.send(msg);
+    }
+
+    close() {
+        this.ws.close();
+    }
+
+
+    static output(str) {
+        var log = document.getElementById("log");
+        var escaped = str
+            .replace(/&/, "&amp;")
+            .replace(/</, "&lt;")
+            .replace(/>/, "&gt;")
+            .replace(/"/, "&quot;"); // "
+        log.innerHTML = escaped + "<br>" + log.innerHTML;
+    }
 }

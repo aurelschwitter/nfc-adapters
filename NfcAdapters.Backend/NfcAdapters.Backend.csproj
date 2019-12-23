@@ -8,10 +8,10 @@
     <IsPackable>false</IsPackable>
     <SpaRoot>ClientApp\</SpaRoot>
     <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
+    <Platforms>AnyCPU;x86</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="ClientApp\package-lock.json" />
     <Content Remove="ClientApp\package.json" />
     <Content Remove="ClientApp\public\manifest.json" />
   </ItemGroup>

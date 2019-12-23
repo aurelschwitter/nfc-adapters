@@ -1,25 +1,49 @@
 import React, { Component } from 'react';
+import { ApiClient } from '../client/ApiClient';
 
 export class Home extends Component {
     static displayName = Home.name;
 
+    constructor(props) {
+        super(props);
+        this.state = { server: "" };
+        this.apiClient = new ApiClient();
+    }
+
+
+
     render() {
         return (
-            <main class="container">
-                <div class="form-container">
-                    <div class="form-row">
-                        <label class="col-md-4">Server: <input class="form-control" type="text" id="server" /></label>
-                        <div class="col-md-4">
-                            <button class="btn btn-secondary" type="button" onclick="init();">Update Server</button>
+            <main className="container">
+                <div className="form-container">
+                    <div className="form-row">
+                        <label className="col-md-4">Server: <input className="form-control" type="text" id="server" onChange={(e) => { this.setServerName(e.target.value) }} /></label>
+                        <div className="col-md-4">
+                            <button className="btn btn-secondary" type="button" onClick={() => this.init()}>Update Server</button>
                         </div>
                     </div>
-                    <div class="btn-group">
-                        <button class="btn btn-secondary" onclick="onCloseClick(); return false;">close</button>
-                        <button class="btn btn-secondary" onclick="output('read'); send('read'); return false;" type="button">READ</button>
+                    <div className="btn-group">
+                        <button className="btn btn-secondary" disabled={ (this.state.server == "") } onClick={() => { this.apiClient.close() }}>close</button>
+                        <button className="btn btn-secondary" disabled={ this.state.server == ""} onClick={() => { this.read() }} type="button">READ</button>
                     </div>
+                    <div id="log"></div>
                 </div>
-                <div id="log"></div>
             </main>
         );
+    }
+
+    setServerName(serverName) {
+        this.setState({
+            server: serverName
+        });
+    }
+
+    read() {
+        ApiClient.output('read');
+        this.apiClient.send('read');
+    }
+
+    init() {
+        this.apiClient.init(this.state.server);
     }
 }

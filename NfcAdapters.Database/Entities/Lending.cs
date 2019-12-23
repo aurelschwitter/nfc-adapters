@@ -11,7 +11,11 @@ namespace NfcAdapters.Database.Entities
     {
         [Key]
         public int LendingId { get; set; }
+
+        [ForeignKey(nameof(Adapter))]
+        public int AdapterId { get; set; }
         public Adapter Adapter { get; set; } = null!;
+
         public string Username { get; set; } = null!;
         public DateTime LendingStart { get; set; }
         public DateTime? Returned { get; set; }
@@ -32,6 +36,12 @@ namespace NfcAdapters.Database.Entities
         /// </summary>
         public Lending()
         {
+        }
+
+
+        public bool IsLendOut()
+        {
+            return LendingStart >= DateTime.Now && (Returned == null || Returned > DateTime.Now);
         }
     }
 }
