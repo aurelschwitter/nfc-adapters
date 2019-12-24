@@ -1,6 +1,8 @@
+import os
 import sys
 
-sys.path.append('/home/aurel/nfc-adapters/nfc_reader')
+dir_path = os.path.dirname(os.path.realpath(__file__))
+sys.path.append(dir_path + '/nfc_reader')
 
 import nfc_helper
 import connect_PN532
