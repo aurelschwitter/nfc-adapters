@@ -92,4 +92,26 @@
             .replace(/"/, "&quot;"); // "
         log.innerHTML = escaped + "<br>" + log.innerHTML;
     }
+
+    async register(username, description) {
+        var request = await fetch('api/dbuser', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                username: username,
+                description: description
+            })
+        });
+
+        var result = await request.json();
+        this.username = result.username;
+        this.key = result.authKey;
+
+        this.SaveLogin();
+
+        return result;
+    }
 }

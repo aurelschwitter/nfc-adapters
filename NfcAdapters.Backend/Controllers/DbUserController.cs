@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.WebSockets;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using NfcAdapters.Backend.ServerConnection;
 using NfcAdapters.Database;
 using NfcAdapters.Database.Entities;
 
@@ -17,14 +21,14 @@ namespace NfcAdapters.Backend.Controllers
         public DbUserController(AdapterContext context) : base(context)
         {}
 
-        // GET: api/DbUsers
+        // GET: api/DbUser
         [HttpGet]
         public async Task<ActionResult<IEnumerable<DbUser>>> GetDbUsers()
         {
             return await AdapterContext.DbUsers.ToListAsync();
         }
 
-        // GET: api/DbUsers/5
+        // GET: api/DbUser/5
         [HttpGet("{id}")]
         public async Task<ActionResult<DbUser>> GetDbUser(int id)
         {
@@ -38,7 +42,7 @@ namespace NfcAdapters.Backend.Controllers
             return dbUser;
         }
 
-        // PUT: api/DbUsers/5
+        // PUT: api/DbUser/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPut("{id}")]
@@ -70,16 +74,24 @@ namespace NfcAdapters.Backend.Controllers
             return NoContent();
         }
 
-        // POST: api/DbUsers
+        // POST: api/DbUser
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
         [HttpPost]
-        public async Task<ActionResult<DbUser>> PostDbUser(DbUser dbUser, int adminId)
+        public async Task<ActionResult<DbUser>> PostDbUser([Bind("Username","Description")] DbUser dbUser, CancellationToken cancellationToken)
         {
-            if (adminId != Convert.ToInt32(Startup.Configuration.GetSection("AdminKey").Value))
+            if (dbUser == null) return Forbid();
+
+            var server = Startup.Configuration.GetSection("NfcServer").Value;
+
+            var tag = await new NfcServerClient(server).ReadTagIdAsync(cancellationToken);
+
+            if (tag.Data != Convert.ToInt32(Startup.Configuration.GetSection("AdminKey").Value))
             {
                 return Forbid();
             }
+
+            dbUser.Authorized = true;
 
             AdapterContext.DbUsers.Add(dbUser);
             await AdapterContext.SaveChangesAsync();
@@ -87,7 +99,7 @@ namespace NfcAdapters.Backend.Controllers
             return CreatedAtAction("GetDbUser", new { id = dbUser.DbUserId }, dbUser);
         }
 
-        // DELETE: api/DbUsers/5
+        // DELETE: api/DbUsers/
         [HttpDelete("{id}")]
         public async Task<ActionResult<DbUser>> DeleteDbUser(int id)
         {

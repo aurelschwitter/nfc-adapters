@@ -12,8 +12,9 @@ namespace NfcAdapters.Database.Entities
         [Key]
         public int DbUserId { get; set; }
 
-        public string AuthKey { get; set; } = null!;
+        public string AuthKey { get; set; } = Guid.NewGuid().ToString();
         public string Username { get; set; } = null!;
         public string? Description { get; set; }
+        public bool Authorized { get; set; } = false;
     }
 }
