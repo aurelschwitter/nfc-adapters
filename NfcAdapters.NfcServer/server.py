@@ -3,9 +3,10 @@ import message_handler
 import message
 
 # Called for every client connecting (after handshake)
+
+
 def new_client(client, server):
 	print("New client connected and was given id %d" % client['id'])
-	server.send_message_to_all(message.respond("hello", "Hey all, a new client has joined us", True))
 
 
 # Called for every client disconnecting
@@ -15,9 +16,12 @@ def client_left(client, server):
 
 # Called when a client sends a message
 def message_received(client, server, msg):
-	
-    response = message_handler.process(msg, client)
-    server.send_message(client, response)
+
+	msgArr = msg.split(" ")
+	args = [] if len(msgArr) == 1 else msgArr[1:]
+
+	response = message_handler.process(msgArr[0], args, client)
+	server.send_message(client, response)
     
 
 PORT=9001

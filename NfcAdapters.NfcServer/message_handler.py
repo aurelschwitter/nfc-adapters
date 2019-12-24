@@ -11,9 +11,9 @@ import message
 
 
 
-def process(msg, client):
+def process(msg, args, client):
 
-    print("Client(%s): %s" %(client, message))
+    print("Client(%s): %s (%s)" % (client['id'], msg, args))
 
     messages = {
         "READ" : read,
@@ -21,19 +21,21 @@ def process(msg, client):
     }
 
     fun = messages.get(msg.upper(), default)
-    return message.respond(msg, fun(msg, client), True)
+    return message.respond(msg, fun(msg, args, client), True)
 
 
-def read(client, message):
+def read(message, args, client):
+    
     pn532 = connect_PN532.connect()
     uid = nfc_helper.wait_for_tag(pn532)
-
+    
+    print("Read complete")
     return [i for i in uid]
 
 
 def write():
     pass
 
-def default(client, message):
-    print("Client(%s) send unknown message (%s)" % (client,message))
+def default(message, args, client):
+    print("Client(%s) send unknown message (%s) with args (%s)" % (client['id'],message))
     return "unknown command"
