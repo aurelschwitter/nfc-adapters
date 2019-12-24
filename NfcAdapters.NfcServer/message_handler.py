@@ -10,6 +10,9 @@ import message
 
 
 def process(msg, client):
+
+    print("Client(%s): %s" %(client, message))
+
     messages = {
         "READ" : read,
         "WRITER" :  write
