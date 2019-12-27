@@ -3,11 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NfcAdapters.Backend", "NfcAdapters.Backend\NfcAdapters.Backend.csproj", "{C912A867-32AA-46B9-971B-0EAA82829250}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NfcAdapters.Web", "NfcAdapters.Web\NfcAdapters.Web.csproj", "{C912A867-32AA-46B9-971B-0EAA82829250}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NfcAdapters.Database", "NfcAdapters.Database\NfcAdapters.Database.csproj", "{09208267-E7AD-43C9-8BBE-DA480A4A41EE}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NfcAdapters.Frontend", "NfcAdapters.Frontend\NfcAdapters.Frontend.csproj", "{E8E6DD77-D4CC-4394-92C8-5A2479DD6F26}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,12 +31,6 @@ Global
 		{09208267-E7AD-43C9-8BBE-DA480A4A41EE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{09208267-E7AD-43C9-8BBE-DA480A4A41EE}.Release|x86.ActiveCfg = Release|Any CPU
 		{09208267-E7AD-43C9-8BBE-DA480A4A41EE}.Release|x86.Build.0 = Release|Any CPU
-		{E8E6DD77-D4CC-4394-92C8-5A2479DD6F26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E8E6DD77-D4CC-4394-92C8-5A2479DD6F26}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E8E6DD77-D4CC-4394-92C8-5A2479DD6F26}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{E8E6DD77-D4CC-4394-92C8-5A2479DD6F26}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E8E6DD77-D4CC-4394-92C8-5A2479DD6F26}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E8E6DD77-D4CC-4394-92C8-5A2479DD6F26}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

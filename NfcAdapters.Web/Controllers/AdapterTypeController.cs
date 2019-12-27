@@ -9,7 +9,7 @@ using NfcAdapters.Backend.ViewModels;
 using NfcAdapters.Database;
 using NfcAdapters.Database.Entities;
 
-namespace NfcAdapters.Backend.Controllers
+namespace NfcAdapters.Web.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

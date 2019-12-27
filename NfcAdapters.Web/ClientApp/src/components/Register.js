@@ -27,6 +27,8 @@ export class Register extends Component {
         var client = new ApiClient();
         var result = await client.register(this.state.username, this.state.description);
 
+        console.log(result);
+
         this.setState({
             loading: false
         })

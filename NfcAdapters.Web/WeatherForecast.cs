@@ -1,6 +1,6 @@
 using System;
 
-namespace NfcAdapters.Backend
+namespace NfcAdapters.Web
 {
     public class WeatherForecast
     {

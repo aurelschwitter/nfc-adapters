@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace NfcAdapters.Backend.ServerConnection
+namespace NfcAdapters.Web.ServerConnection
 {
     public class TagReadResponse<T>
     {

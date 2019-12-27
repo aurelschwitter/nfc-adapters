@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NfcAdapters.Database;
 
-namespace NfcAdapters.Backend.Controllers
+namespace NfcAdapters.Web.Controllers
 {
     [ApiController]
     public class BaseController : ControllerBase

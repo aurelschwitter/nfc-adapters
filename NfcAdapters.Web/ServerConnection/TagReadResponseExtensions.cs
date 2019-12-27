@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace NfcAdapters.Backend.ServerConnection
+namespace NfcAdapters.Web.ServerConnection
 {
     public static class TagReadResponseExtensions
     {

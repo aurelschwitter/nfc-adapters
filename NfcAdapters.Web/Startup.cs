@@ -14,7 +14,7 @@ using Microsoft.Extensions.Logging;
 using NfcAdapters.Database;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 
-namespace NfcAdapters.Backend
+namespace NfcAdapters.Web
 {
     public class Startup
     {

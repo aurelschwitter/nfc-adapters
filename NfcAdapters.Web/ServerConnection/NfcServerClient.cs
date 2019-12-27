@@ -7,7 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using WebSocket4Net;
 
-namespace NfcAdapters.Backend.ServerConnection
+namespace NfcAdapters.Web.ServerConnection
 {
     public class NfcServerClient
     {

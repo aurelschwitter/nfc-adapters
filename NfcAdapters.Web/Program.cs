@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace NfcAdapters.Backend
+namespace NfcAdapters.Web
 {
     public static class Program
     {
