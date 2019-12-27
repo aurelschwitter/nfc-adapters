@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using NfcAdapters.Backend.ServerConnection;
+using NfcAdapters.Web.ServerConnection;
 using NfcAdapters.Database;
 using NfcAdapters.Database.Entities;
 
-namespace NfcAdapters.Backend.Controllers
+namespace NfcAdapters.Web.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

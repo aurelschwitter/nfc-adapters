@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using NfcAdapters.Backend.ViewModels;
+using NfcAdapters.Web.ViewModels;
 using NfcAdapters.Database;
 using NfcAdapters.Database.Entities;
 
