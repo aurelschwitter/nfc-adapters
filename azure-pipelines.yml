@@ -50,5 +50,5 @@ steps:
   inputs:
     containerRegistry: 'Docker Hub aurelschwitter'
     repository: 'aurelschwitter'
-    command: 'buildAndPush'
+    command: 'build'
     Dockerfile: '**/Dockerfile'
